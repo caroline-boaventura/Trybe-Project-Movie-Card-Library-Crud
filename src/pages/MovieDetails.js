@@ -11,7 +11,10 @@ class MovieDetails extends Component {
     this.state = {
       movie: {},
       loading: true,
+      shouldRedirect: false,
     };
+
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -28,9 +31,30 @@ class MovieDetails extends Component {
       });
   }
 
+  deleteMovie(event) {
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+
+    event.preventDefault();
+
+    movieAPI.deleteMovie(id)
+      .then((response) => {
+        this.setState({
+          movie: response,
+          shouldRedirect: true,
+        });
+      });
+  }
+
   render() {
-    const { movie, loading } = this.state;
+    const { movie, loading, shouldRedirect } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
+    const { history } = this.props;
+
+    if (shouldRedirect) {
+      history.push('/');
+    }
 
     if (loading === true) return <Loading />;
 
@@ -44,6 +68,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link onClick={ this.deleteMovie } to="/">DELETAR</Link>
       </div>
     );
   }
@@ -55,6 +80,9 @@ MovieDetails.propTypes = {
       id: PropTypes.number,
     },
   },
+  history: {
+    push: PropTypes.func,
+  },
 };
 
 MovieDetails.defaultProps = {
@@ -62,6 +90,9 @@ MovieDetails.defaultProps = {
     params: {
       id: 0,
     },
+  },
+  history: {
+    push: undefined,
   },
 };
 
