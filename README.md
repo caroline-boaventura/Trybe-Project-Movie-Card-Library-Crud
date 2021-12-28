@@ -1,4 +1,4 @@
-# Project Movie Cards CRUD!
+# Project Movie Cards CRUD
 
 Projeto em que se criou um CRUD de cartões de filmes em React, onde será possível adicionar um novo filme à lista, listar todos os filmes cadastrados, com uma página de informações resumidas sobre cada filme e uma página de informações detalhadas de um filme selecionado, editar um filme e apagar um filme da lista.
 
