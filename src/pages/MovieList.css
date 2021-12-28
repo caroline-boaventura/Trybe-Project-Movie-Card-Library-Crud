@@ -1,0 +1,31 @@
+.movie-list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+  max-width: 80%;
+}
+
+.movie-list div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.movie-list a {
+  color: white;
+  background-color: rgb(47, 79, 79);
+  border-radius: 5px;
+  padding: 7px;
+  text-decoration: none;
+}
+
+.movie-list a:visited {
+  color: white;
+}
+
+.movie-list a:hover {
+  background-color: rgb(18, 18, 18);
+}
